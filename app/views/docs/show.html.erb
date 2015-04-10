@@ -14,20 +14,20 @@
      	<% if signed_in? %>
      		<div class="col-md-12 pull-right">
 	     		<div class="pull-right">
-						<%= link_to docs_path ,class: "btn btn-circle btn-lg" do %>
+						<%= link_to docs_path ,class: "btn btn-circle btn-large" do %>
 				    <i class="glyphicon glyphicon-arrow-left"></i>
 						<% end %>
-						<%= link_to @doc, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-circle btn-lg" do %>
+						<%= link_to @doc, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-circle btn-large" do %>
 				    <i class="glyphicon glyphicon-trash"></i>
 						<% end %>
-						<%= link_to edit_doc_path(@doc) ,class: "btn btn-circle btn-lg" do %>
+						<%= link_to edit_doc_path(@doc) ,class: "btn btn-circle btn-large" do %>
 				    <i class="glyphicon glyphicon-pencil"></i>
 						<% end %>
 					</div>
 				</div>
 
-				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%=@doc.id%>"><h3>Comments(<%= @doc.doc_comments.count %>)</h3></button>
-  			<div class="collapse" id="<%=@doc.id%>">
+				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%="c"+@doc.id.to_s%>"><h3>Comments(<%= @doc.doc_comments.count %>)</h3></button>
+  			<div class="collapse" id="<%="c"+@doc.id.to_s%>">
     		<%= render partial: @doc.doc_comments %>
 	      	<div>
 						<%= form_for [@doc, DocComment.new] do |f| %>

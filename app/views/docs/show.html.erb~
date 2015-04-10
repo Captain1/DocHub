@@ -1,35 +1,52 @@
-<% provide(:title, @user.name) %>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span2">
-      <section>
-          <h4>
-            <%= gravatar_for @user %>
-            <%= @user.name %>
-          </h4>
-        </section>
-        <section id="stats">
-          <%= render 'shared/stats' %>
-          <%= render 'follow_form' %>
-        </section>
-    </div>
-    <div class="span5">
-      <div class= "col-md-12">
-      <% if @user.microposts.any? %>
-          <h3>Microposts (<%= @user.microposts.count %>)</h3>
-          <ol class="microposts">
-            <%= render @microposts %>
-          </ol>
-      <% end %>
-      </div>
-      <div class= "col-md-12">
-      <% if @user.doc_comments.any? %>
-          <h3>Document Activities (<%= @user.doc_comments.count %>)</h3>
-          <ol class="doc_comments">
-            <%= render 'doc_comments/doc_feed' %>
-          </ol>
-      <% end %>
-      </div>
-    </div>
+    <div class="span8 container">
+    	<div class="pull-left">
+				<h1>
+					<span class="pull-left"><%= @doc.title %></span>&nbsp;&nbsp;
+					<span class="label label-inverse"><%= @doc.license%></span>
+				</h1>
+				<h4>Published by&nbsp;<%= link_to @doc.user.name, @doc.user %>&nbsp;at&nbsp<%= @doc.created_at %></span></h4>
+			</div>
+      <iframe src="<%= @doc.filepicker_url %>" id="reader_iframe" frameborder="0"
+    style="position: relative; height: 640px; width: 100%;"></iframe>
+     	
+     	<% if signed_in? %>
+     		<div class="col-md-12 pull-right">
+	     		<div class="pull-right">
+						<%= link_to docs_path ,class: "btn btn-circle btn-lg" do %>
+				    <i class="glyphicon glyphicon-arrow-left"></i>
+						<% end %>
+						<%= link_to @doc, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-circle btn-lg" do %>
+				    <i class="glyphicon glyphicon-trash"></i>
+						<% end %>
+						<%= link_to edit_doc_path(@doc) ,class: "btn btn-circle btn-lg" do %>
+				    <i class="glyphicon glyphicon-pencil"></i>
+						<% end %>
+					</div>
+				</div>
+
+				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%=@doc.id%>"><h3>Comments(<%= @doc.doc_comments.count %>)</h3></button>
+  			<div class="collapse" id="<%=@doc.id%>">
+    		<%= render partial: @doc.doc_comments %>
+	      	<div>
+						<%= form_for [@doc, DocComment.new] do |f| %>
+				    <h3>Leave a comment</h3><br/>
+				    <%= f.text_area :content , size: "5x10", placeholder: "Say something..." %>
+				    <%= f.submit "Comment", class: "btn btn-large btn-primary" %>
+						<% end %>
+	      	</div>
+  			</div>
+		</div>
+		<div class="span4 col-md-4 side">
+			<aside id="aside">	
+				<div class="well rdoc">
+					<h3>Related Documents</h3>
+				</div>
+			</aside>
+		</div>
+	</div>
   </div>
 </div>
+<% end %>
+

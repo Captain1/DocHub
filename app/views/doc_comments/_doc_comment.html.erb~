@@ -18,8 +18,8 @@
                   data: { confirm: "You sure?" },
                   title: doc_comment.content %>
   <% end %>
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%="r"+doc_comment.id.to_s%>">Reply</button>
-  <div class="collapse" id="<%="r"+doc_comment.id.to_s%>">
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%=doc_comment.id%>">Reply</button>
+  <div class="collapse" id="<%=doc_comment.id%>">
     <%= render partial: doc_comment.doc_replies %>
       <div class="col-md-10">
         <%= form_for [doc_comment, DocReply.new] do |f| %>
@@ -29,4 +29,3 @@
       </div>
   </div>
 </div>
-
