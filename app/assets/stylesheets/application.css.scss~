@@ -260,12 +260,12 @@ select,
     margin-right: 10px;
 }
 
-/*aside {
+aside {
     textarea {
         height: 100px;
         margin-bottom: 5px;
     }
-}*/
+}
 /* doc_comments */
 
 .doc_comments {
@@ -290,12 +290,12 @@ select,
     margin-right: 10px;
 }
 
-/*aside {
+aside {
     textarea {
         height: 100px;
         margin-bottom: 5px;
     }
-}*/
+}
 /* Users index */
 
 .users {
@@ -361,8 +361,8 @@ div.image {
 .thumbnail.contentblock {
     border: 0;
 }
-//side
-.side {
+//related doc list
+.rdoc {
     padding-top: 108px;
     padding-bottom: 10px;
 }
@@ -413,11 +413,5 @@ clear: both;
 #stats{
     overflow: auto;
     margin-left: 25%;
-    width: 100%;
-}
-#reader_iframe
-{
-    position: relative;
-    height: 100%;
-    width: 100%; 
+    width: 70%;
 }

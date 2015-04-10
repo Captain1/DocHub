@@ -8,7 +8,8 @@
 				</h1>
 				<h4>Published by&nbsp;<%= link_to @doc.user.name, @doc.user %>&nbsp;at&nbsp<%= @doc.created_at %></span></h4>
 			</div>
-      <iframe src="<%= @doc.filepicker_url %>" style="width:900px; height:640px;" frameborder="0" id="iframe"></iframe>
+      <iframe src="<%= @doc.filepicker_url %>" id="reader_iframe" frameborder="0"
+    style="position: relative; height: 640px; width: 100%;"></iframe>
      	
      	<% if signed_in? %>
      		<div class="col-md-12 pull-right">
@@ -37,9 +38,9 @@
 	      	</div>
   			</div>
 		</div>
-		<div class="span4 col-md-4 rdoc">
+		<div class="span4 col-md-4 side">
 			<aside id="aside">	
-				<div class="well sheet-info">
+				<div class="well rdoc">
 					<h3>Related Documents</h3>
 				</div>
 			</aside>
@@ -48,3 +49,4 @@
   </div>
 </div>
 <% end %>
+
