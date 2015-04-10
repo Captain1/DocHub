@@ -1,0 +1,32 @@
+<% if signed_in? %>
+  <ul class="nav nav-tabs">
+    <li role="presentation"><a href="<%=recent_docs_path%>">Latest</a></li>
+    <li role="presentation"><a href="<%=zeroviews_docs_path%>">Zeroviews</a></li>
+    <li role="presentation"><a href="<%=active_docs_path%>">Active</a></li>
+  </ul>
+  <div class="row">
+    <% @docs.each do |doc| %>
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail shadowlight content block">
+        <%= link_to (filepicker_image_tag doc.filepicker_url, w: 300, h: 300 ), doc %>
+        <%= pluralize doc.doc_comments.size, 'comments' %>
+         <%= link_to root_path ,class: "btn btn-circle" do %>
+          <i class="glyphicon glyphicon-thumbs-up"></i>
+         <% end %>
+         <%= link_to root_path ,class: "btn btn-circle" do %>
+          <i class="glyphicon glyphicon-thumbs-down"></i>
+         <% end %>
+         <%= link_to root_path ,class: "btn btn-circle" do %>
+          <i class="glyphicon glyphicon-heart"></i>
+         <% end %>
+         <%#= filepicker_save_button "Save", doc.filepicker_url, "application/pdf" %>
+         <button name="button" class="btn btn-circle" type="submit" data-fp-url="<%=doc.filepicker_url%>" data-fp-apikey="AM4zN9zf0Qn6dG3sdRwhDz" data-fp-mimetype="application/pdf"><i class="glyphicon glyphicon-arrow-down"></i></button>
+      </div>
+      </div>
+    <% end %>
+    </div>
+<% end %>
+<div class="center">
+<%= will_paginate @docs %>
+</div>
+<script type="text/javascript"src="//api.filepicker.io/v1/filepicker.js"></script>

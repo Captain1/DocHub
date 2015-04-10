@@ -1,0 +1,6 @@
+<% if @doc_feed_items.any? %>
+  <ol class="doc_comments">
+    <%= render partial: 'doc_comments/doc_feed_item', collection: @doc_feed_items %>
+  </ol>
+  <%= will_paginate @doc_feed_items %>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="container">
+  </br>
+  <%= link_to gravatar_for(doc_reply.user), doc_reply.user %>
+  <span class="content">
+    <%= doc_reply.content %>
+  </span>
+  <span class="user">
+    <%= link_to doc_reply.user.name, doc_reply.user %>
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words( doc_reply.created_at) %> ago.
+  </span>
+  <% if current_user?(doc_reply.user) %>
+      <%= link_to "delete", doc_reply, method: :delete,
+                  data: { confirm: "You sure?" },
+                  title: doc_reply.content %>
+  <% end %>
+
+</div>

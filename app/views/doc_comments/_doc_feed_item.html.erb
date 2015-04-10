@@ -1,0 +1,16 @@
+<li id="<%= doc_feed_item.id %>">
+  <%= link_to gravatar_for(doc_feed_item.user), doc_feed_item.user %>
+  <span class="user">
+    <%= link_to doc_feed_item.user.name, doc_feed_item.user %>
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(doc_feed_item.created_at) %> ago.
+  </span>
+</br>
+  <span class="title">
+    <%= link_to doc_feed_item.doc.title, doc_feed_item.doc %>
+  </span>
+</br>
+  <span class="content"><%= doc_feed_item.content %></span>
+
+</li>

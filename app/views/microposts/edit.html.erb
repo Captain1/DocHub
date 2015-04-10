@@ -1,0 +1,9 @@
+<div class="center col-md-6">
+<%= form_for(@micropost) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_area :content, size: "5x6"%>
+    </div>
+  <%= f.submit "Update", class: "btn btn-large btn-primary pull-right" %>
+<% end %>
+</div>

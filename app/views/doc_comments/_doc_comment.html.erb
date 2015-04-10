@@ -1,0 +1,31 @@
+<div class="container">
+  </br>
+  <%= link_to gravatar_for(doc_comment.user), doc_comment.user %>
+  <span class="title">
+    <%= link_to doc_comment.doc.title, doc_comment.doc %>
+  </span></br>
+  <span class="content">
+    <%= doc_comment.content %>
+  </span>
+  <span class="user">
+    <%= link_to doc_comment.user.name, doc_comment.user %>
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words( doc_comment.created_at) %> ago.
+  </span>
+  <% if current_user?(doc_comment.user) %>
+    <%= link_to "delete", doc_comment, method: :delete,
+                  data: { confirm: "You sure?" },
+                  title: doc_comment.content %>
+  <% end %>
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%=doc_comment.id%>">Reply</button>
+  <div class="collapse" id="<%=doc_comment.id%>">
+    <%= render partial: doc_comment.doc_replies %>
+      <div class="col-md-10">
+        <%= form_for [doc_comment, DocReply.new] do |f| %>
+          <p><%= f.text_area :content , size: "5x5", placeholder: "@"+ doc_comment.user.name %></p>
+          <p><%= f.submit "Submit" , class: "btn btn-large btn-primary"%></p>
+        <% end %>
+      </div>
+  </div>
+</div>

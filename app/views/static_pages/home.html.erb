@@ -1,0 +1,34 @@
+<% provide(:title, 'Home') %>
+<% if signed_in? %>     
+  <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3 pull-left">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+      <section>
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </div>
+    <div class="span5">
+      <% if @user.doc_comments.any? %>
+              <h3>Document Comments (<%= @user.doc_comments.count %>)</h3>
+              <ol class="doc_comments">
+              <%= render 'doc_comments/doc_feed' %>
+              </ol>
+          <% end %>
+    </div>
+  </div>
+</div>
+  <% else %>
+    <div id="container">
+      <header class="jumbotron hero-spacer">
+        <h1>Welcome to Document Hub!</h1>
+          <p class="center">Where you can find your favorite IT documents!</p>
+          <div class="center"><%= link_to "Sign up now!", signup_path,class: "btn btn-large btn-primary" %></div>
+      </header>
+    </div>
+<% end %>

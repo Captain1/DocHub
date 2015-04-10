@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <%= render 'layouts/shim' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <%= csrf_meta_tags %>   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Welcome to Document Hub! | <%=yield(:title)%></title>
+  </head>
+  <body id="ibody">
+    <%= render 'layouts/header' %>
+    <div class="container-fluid">
+      <% flash.each do |name, msg| %>
+      <% content_tag(:div, msg, class: "alert alert-info") %>
+      <% end %>
+      <%= yield %>
+    </div>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>
