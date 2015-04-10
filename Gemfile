@@ -21,6 +21,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mailboxer', '~> 0.12.5'
 gem 'execjs', '~> 2.4.0'
 gem 'filepicker-rails'
+# search
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :production do
   gem 'pg', '0.15.1'
