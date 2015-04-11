@@ -96,8 +96,8 @@ p {
     float: left;
     margin-right: 10px;
     font-size: 1.7em;
-    color: #fff;
-    text-transform: uppercase;
+    color: #CDDC39;
+    text-transform: capitalize;
     letter-spacing: -1px;
     padding-top: 9px;
     font-weight: bold;
@@ -105,7 +105,7 @@ p {
 }
 
 #logo:hover {
-    color: #fff;
+    color: #827717;
     text-decoration: none;
 }
 
@@ -144,6 +144,25 @@ footer ul li {
     float: left;
     margin-left: 10px;
 }
+
+/* Sticky footer */
+* {
+margin: 0;
+}
+html, body {
+height: 100%;
+}
+.wrapper {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -4em;
+}
+.footer, .push {
+height: 4em;
+clear: both;
+}
+
 /* miscellaneous */
 
 .debug_dump {
@@ -392,23 +411,7 @@ div.image {
   line-height: 1.33;
   border-radius: 35px;
 }
-/* Sticky footer */
-* {
-margin: 0;
-}
-html, body {
-height: 100%;
-}
-.wrapper {
-min-height: 100%;
-height: auto !important;
-height: 100%;
-margin: 0 auto -4em;
-}
-.footer, .push {
-height: 4em;
-clear: both;
-}
+
 /* stats section in user page */
 #stats{
     overflow: auto;
@@ -420,4 +423,7 @@ clear: both;
     position: relative;
     height: 100%;
     width: 100%; 
+}
+#search{
+    width: 500px;
 }

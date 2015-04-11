@@ -24,7 +24,7 @@
       </div>
       <div class= "col-md-12">
       <% if @user.doc_comments.any? %>
-          <h3>Document Activities (<%= @user.doc_comments.count %>)</h3>
+          <h3>Activities (<%= @user.doc_comments.count %>)</h3>
           <ol class="doc_comments">
             <%= render 'doc_comments/doc_feed' %>
           </ol>
