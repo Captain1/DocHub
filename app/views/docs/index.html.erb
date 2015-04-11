@@ -4,7 +4,7 @@
     <li role="presentation"><a href="<%=zeroviews_docs_path%>">Zeroviews</a></li>
     <li role="presentation"><a href="<%=active_docs_path%>">Active</a></li>
   </ul>
-  <div class="row">
+  <div class="col-md-11">
     <% @docs.each do |doc| %>
       <div class="col-sm-6 col-md-3">
         <div class="thumbnail shadowlight content block">
@@ -26,6 +26,21 @@
     <% end %>
     </div>
 <% end %>
+<div class="col-md-1">
+<span class="fab fa-stack fa-2x">
+  <i class="fa fa-circle fa-stack-2x fab-backdrop"></i>
+  <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
+  <i class="fa fa-pencil fa-stack-1x fa-inverse fab-secondary"></i>
+</span>
+</div>
+<script>
+  $('.fab').click(function() {
+    $(this).toggleClass('active');
+  });
+// Initialize collapse button
+  $(".button-collapse").sideNav();
+</script>
+
 <div class="center">
 <%= will_paginate @docs %>
 </div>

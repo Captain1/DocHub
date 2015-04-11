@@ -1,8 +1,8 @@
+<div class="col-md-12">
 <%= form_for @doc, html: { multipart: true} do |f| %>
   <% if @doc.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@doc.errors.count, "error") %> prohibited this doc from being saved:</h2>
-
       <ul>
       <% @doc.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -34,14 +34,18 @@
 <%= form_for @doc do |f| %>
   <div>
     <%= f.label :filepicker_url, "Upload Your Doc Here:" %>
-    <%= f.filepicker_field :filepicker_url, dragdrop:true, extensions: '.pdf', store_location:"S3", store_access: "public", onchange:'onDocUpload(event)'%>
+    <%= f.filepicker_field :filepicker_url, dragdrop:true, extensions: '.pdf', store_location:"S3", store_access: "public" %>
   </div>
 <% end %>
   </div>
-
+<div id="bk_btn" class="pull-left">
+      <%= link_to docs_path ,class: "btn  btn-circle btn-large" do %>
+      <i class="glyphicon glyphicon-menu-left"></i>
+      <% end %>
+</div>
 <div class="center">
   <button type="submit" name="commit" value="Post" class="btn btn-info btn-circle btn-xl"><i class="glyphicon glyphicon-arrow-up"></i></button>
 </div>
 <script type="text/javascript"src="//api.filepicker.io/v1/filepicker.js"></script>
-
 <% end %>
+</div>
