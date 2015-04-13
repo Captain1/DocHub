@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy, :edit,:update]
   resources :relationships, only: [:create, :destroy]
-
+  resources :favorite_docs, only: [:index, :create, :destroy]
   root to: 'static_pages#home'
   match '/help',    to: 'static_pages#help' , via: 'get'
   match '/about',   to: 'static_pages#about', via: 'get'

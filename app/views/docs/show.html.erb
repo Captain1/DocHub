@@ -2,11 +2,9 @@
   <div class="row-fluid">
     <div class="span8 container">
     	<div class="pull-left">
-				<h1>
-					<span class="pull-left"><%= @doc.title %></span>&nbsp;&nbsp;
+					<h1><span class="pull-left"><%= @doc.title %></span>&nbsp;&nbsp;</h1>
 					<span class="label label-inverse"><%= @doc.license%></span>
-				</h1>
-				<h4>Published by&nbsp;<%= link_to @doc.user.name, @doc.user %>&nbsp;at&nbsp<%= @doc.created_at %></span></h4>
+				<h4>Uploaded by&nbsp;<%= link_to @doc.user.name, @doc.user %>&nbsp;at&nbsp<%= @timestamp %></span></h4>
 			</div>
       <iframe src="<%= @doc.filepicker_url %>" id="reader_iframe" frameborder="0"
     style="position: relative; height: 640px; width: 100%;"></iframe>
@@ -17,15 +15,16 @@
 						<%= link_to docs_path ,class: "btn btn-circle btn-large" do %>
 				    <i class="glyphicon glyphicon-arrow-left"></i>
 						<% end %>
-						<%= link_to @doc, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-circle btn-large" do %>
-				    <i class="glyphicon glyphicon-trash"></i>
-						<% end %>
+            <% if current_user?(@doc.user) %>
+              <%= link_to @doc, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-circle btn-large" do %>
+              <i class="glyphicon glyphicon-trash"></i>
+              <% end %>
+            <% end %>
 						<%= link_to edit_doc_path(@doc) ,class: "btn btn-circle btn-large" do %>
 				    <i class="glyphicon glyphicon-pencil"></i>
 						<% end %>
 					</div>
 				</div>
-
 				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%="c"+@doc.id.to_s%>"><h3>Comments(<%= @doc.doc_comments.count %>)</h3></button>
   			<div class="collapse" id="<%="c"+@doc.id.to_s%>">
     		<%= render partial: @doc.doc_comments %>

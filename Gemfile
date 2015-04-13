@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 gem 'autoprefixer-rails'
+# comment out when upload
+gem 'sqlite3'
 gem 'bcrypt'
 gem 'faker', '1.1.2'
 gem 'rails', '4.2.0'

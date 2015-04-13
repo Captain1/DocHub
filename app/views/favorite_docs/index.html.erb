@@ -1,11 +1,6 @@
 <% if signed_in? %>
-  <ul class="nav nav-tabs">
-    <li role="presentation"><a href="<%=recent_docs_path%>">Latest</a></li>
-    <li role="presentation"><a href="<%=zeroviews_docs_path%>">Zeroviews</a></li>
-    <li role="presentation"><a href="<%=active_docs_path%>">Active</a></li>
-  </ul>
   <div class="col-md-11">
-    <% @docs.each do |doc| %>
+    <% @favorite_docs.each do |doc| %>
       <div class="col-sm-6 col-md-3">
         <div class="thumbnail shadowlight content block">
         <%= link_to (filepicker_image_tag doc.filepicker_url, w: 300, h: 300 ), doc %>

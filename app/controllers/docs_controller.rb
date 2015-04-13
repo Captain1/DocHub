@@ -19,7 +19,9 @@ before_action :set_doc, only: [:show, :edit, :update, :destroy]
     respond_to do |format|
       format.html
       format.json { render json: @doc }
+      @timestamp = @doc.created_at.to_s.from(0).to(-5)
     end
+
   end
 
   def new
@@ -30,9 +32,12 @@ before_action :set_doc, only: [:show, :edit, :update, :destroy]
   end
 
   def create
-    secure_post = params.require(:doc).permit(:title, :user_id, :topic, 
-      :license, :description, :filepicker_url)
-    @doc = current_user.docs.build(secure_post)
+    @doc = Doc.new(doc_params)
+    @doc.user = current_user
+    @doc.save
+    # secure_post = params.require(:doc).permit(:title, :user_id, :topic, 
+    #   :license, :description, :filepicker_url)
+    # @doc = current_user.docs.build(secure_post)
 
     respond_to do |format|
       if @doc.save

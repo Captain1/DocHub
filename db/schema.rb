@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408201815) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20150411152001) do
 
   create_table "doc_comments", force: :cascade do |t|
     t.string   "content"
@@ -24,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150408201815) do
     t.datetime "updated_at"
   end
 
-  add_index "doc_comments", ["user_id", "doc_id", "created_at"], name: "index_doc_comments_on_user_id_and_doc_id_and_created_at", using: :btree
+  add_index "doc_comments", ["user_id", "doc_id", "created_at"], name: "index_doc_comments_on_user_id_and_doc_id_and_created_at"
 
   create_table "doc_replies", force: :cascade do |t|
     t.string   "content"
@@ -34,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150408201815) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "doc_replies", ["user_id", "doc_comment_id", "created_at"], name: "index_doc_replies_on_user_id_and_doc_comment_id_and_created_at", using: :btree
+  add_index "doc_replies", ["user_id", "doc_comment_id", "created_at"], name: "index_doc_replies_on_user_id_and_doc_comment_id_and_created_at"
 
   create_table "docs", force: :cascade do |t|
     t.string   "title"
@@ -47,6 +44,17 @@ ActiveRecord::Schema.define(version: 20150408201815) do
     t.integer  "doc_comments_count", default: 0
     t.string   "filepicker_url"
   end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "favorited_id"
+    t.string   "favorited_type"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "favorites", ["favorited_type", "favorited_id"], name: "index_favorites_on_favorited_type_and_favorited_id"
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "message_texts", force: :cascade do |t|
     t.integer  "user_id"
@@ -73,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150408201815) do
     t.datetime "updated_at"
   end
 
-  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
+  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -82,9 +90,9 @@ ActiveRecord::Schema.define(version: 20150408201815) do
     t.datetime "updated_at"
   end
 
-  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
-  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
-  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -96,7 +104,7 @@ ActiveRecord::Schema.define(version: 20150408201815) do
     t.boolean  "admin",           default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

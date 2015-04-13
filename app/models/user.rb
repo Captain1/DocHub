@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
                                      class_name:  "Relationship",
                                      dependent:   :destroy
       has_many :followers, through: :reverse_relationships, source: :follower
+      has_many :favorites
+      has_many :favorite_docs, through: :favorites, source: :favorited, source_type: 'Doc'
       
       before_save do |user| 
               user.email = email.downcase 

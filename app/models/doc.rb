@@ -4,6 +4,7 @@ class Doc < ActiveRecord::Base
     validates :description, presence: true, length: { maximum: 300 }
     
     belongs_to :user
+    belongs_to :favorite_docs
     has_many :doc_comments ,dependent: :destroy
     # has_many :related_docs ,dependent: :destroy
     # has_many :topics ,dependent: :destroy
