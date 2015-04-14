@@ -5,6 +5,7 @@ before_action :set_doc, only: [:show, :edit, :update, :destroy]
 
   def index
     @docs = Doc.all.order('doc_comments_count, created_at DESC').paginate(page: params[:page], per_page: 12)
+    # @docs = Doc.by_votes.paginate(page: params[:page], per_page: 12)
     if params[:search]
       @docs = Doc.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 12)
     end
@@ -84,6 +85,15 @@ before_action :set_doc, only: [:show, :edit, :update, :destroy]
     @docs = Doc.zeroviews.order('created_at DESC').paginate(page: params[:page], per_page: 12)
     render action: :index
   end
+
+  def vote
+    vote = current_user.doc_votes.new(value: params[:value], doc_id: params[:id])
+    if vote.save
+      redirect_to :back, notice: "Thank you for voting."
+    else
+      redirect_to :back, alert: "Unable to vote, perhaps you already did."
+    end
+end
       
   private
     def set_doc

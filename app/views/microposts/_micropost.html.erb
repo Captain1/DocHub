@@ -21,7 +21,7 @@
         <i class="glyphicon glyphicon-trash"></i>
         <% end %>
         <i class="glyphicon glyphicon-option-vertical pull-right"></i>
-        <%= link_to edit_micropost_path, class: 'btn btn-circle pull-right' do %>
+        <%= link_to edit_micropost_path(:id=>micropost.id), class: 'btn btn-circle pull-right' do %>
         <i class="glyphicon glyphicon-edit"></i>
         <% end %>
     <% end %>  </span>

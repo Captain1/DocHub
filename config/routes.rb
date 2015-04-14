@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :docs, shallow:true do
+    member { post :vote }
     collection do
       get :recent
       get :active

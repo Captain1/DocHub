@@ -23,6 +23,18 @@
 						<%= link_to edit_doc_path(@doc) ,class: "btn btn-circle btn-large" do %>
 				    <i class="glyphicon glyphicon-pencil"></i>
 						<% end %>
+
+            
+            <% if current_user && current_user.can_vote_for?(@doc) %>
+            <%= link_to vote_doc_path(@doc, value: 1), method: "post" ,class: "btn btn-circle btn-large" do %>
+                      <i class="glyphicon glyphicon-thumbs-up"></i>
+                     <% end %>
+                     <%= link_to vote_doc_path(@doc, value: -1), method: "post" ,class: "btn btn-circle btn-large" do %>
+                      <i class="glyphicon glyphicon-thumbs-down"></i>
+                     <% end %>
+            <% end %>
+            <%= pluralize @doc.votes, "vote" %>
+
 					</div>
 				</div>
 				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%="c"+@doc.id.to_s%>"><h3>Comments(<%= @doc.doc_comments.count %>)</h3></button>

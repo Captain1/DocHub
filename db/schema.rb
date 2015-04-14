@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411152001) do
+ActiveRecord::Schema.define(version: 20150413225241) do
 
   create_table "doc_comments", force: :cascade do |t|
     t.string   "content"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20150411152001) do
 
   add_index "doc_replies", ["user_id", "doc_comment_id", "created_at"], name: "index_doc_replies_on_user_id_and_doc_comment_id_and_created_at"
 
+  create_table "doc_votes", force: :cascade do |t|
+    t.integer  "doc_id"
+    t.integer  "user_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "doc_votes", ["doc_id"], name: "index_doc_votes_on_doc_id"
+  add_index "doc_votes", ["user_id"], name: "index_doc_votes_on_user_id"
+
   create_table "docs", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
@@ -44,6 +55,8 @@ ActiveRecord::Schema.define(version: 20150411152001) do
     t.integer  "doc_comments_count", default: 0
     t.string   "filepicker_url"
   end
+
+  add_index "docs", ["user_id"], name: "index_docs_on_user_id"
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "favorited_id"

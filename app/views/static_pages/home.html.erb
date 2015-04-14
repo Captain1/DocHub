@@ -24,6 +24,13 @@
   </div>
 </div>
   <% else %>
+  <div class="banner">
+    <ul>
+        <li><img alt="Icon" src="http://examtimequiz.com/wp-content/uploads/2013/08/computer-science-mcq-examtimequiz.com_.jpg" /></li>
+<li><img alt="Icon" src="http://examtimequiz.com/wp-content/uploads/2013/08/computer-science-mcq-examtimequiz.com_.jpg" /></li>
+<li><img alt="Icon" src="http://examtimequiz.com/wp-content/uploads/2013/08/computer-science-mcq-examtimequiz.com_.jpg" /></li>
+    </ul>
+</div>
     <div id="container">
       <header class="jumbotron hero-spacer">
         <h1>Welcome to Document Hub!</h1>
@@ -32,3 +39,15 @@
       </header>
     </div>
 <% end %>
+<script>
+  $(function() {
+      $('.banner').unslider({
+  speed: 500,               //  The speed to animate each slide (in milliseconds)
+  delay: 3000,              //  The delay between slide animations (in milliseconds)
+  complete: function() {},  //  A function that gets called after every slide animation
+  keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+  dots: true,               //  Display dot navigation
+  fluid: true              //  Support responsive design. May break non-responsive designs
+});
+  });
+</script>

@@ -6,6 +6,7 @@ class Doc < ActiveRecord::Base
     belongs_to :user
     belongs_to :favorite_docs
     has_many :doc_comments ,dependent: :destroy
+    has_many :doc_votes
     # has_many :related_docs ,dependent: :destroy
     # has_many :topics ,dependent: :destroy
 
@@ -19,7 +20,15 @@ class Doc < ActiveRecord::Base
         'CC Attribution-NonCommercial-ShareAlike License','CC Attribution-ShareAlike License']
 
     TOPICS = ['Front End','Back End', 'Web Service', 'Database','Javascript','Linux','Java', 'Version Control','Ruby','Mobile Development', 'UI/UX Design','Cloud Computing','Virtualization']
-    
+    def self.by_votes
+        select('docs.*, coalesce(value, 0) as votes').
+        joins('left join doc_votes on doc_id=docs.id').
+        order('votes desc')
+    end
+    def votes
+        read_attribute(:votes) || doc_votes.sum(:value)
+    end
+    # sqlite3 search
     def self.search(query)
         where("title like ?", "%#{query}%") 
     end

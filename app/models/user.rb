@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
-      has_many :microposts, dependent: :destroy
-      has_many :docs, dependent: :destroy
-      has_many :doc_comments, dependent: :destroy
-      has_many :doc_replies, dependent: :destroy
-      has_many :messages, dependent: :destroy
-      has_many :message_texts, dependent: :destroy
+      has_many :microposts
+      has_many :docs
+      has_many :doc_comments
+      has_many :doc_replies
+      has_many :doc_votes
+      has_many :messages
+      has_many :message_texts
       has_many :relationships, foreign_key: "follower_id", dependent: :destroy
    
       has_many :followed_users, through: :relationships, source: :followed
@@ -14,7 +15,7 @@ class User < ActiveRecord::Base
       has_many :followers, through: :reverse_relationships, source: :follower
       has_many :favorites
       has_many :favorite_docs, through: :favorites, source: :favorited, source_type: 'Doc'
-      
+
       before_save do |user| 
               user.email = email.downcase 
             user.remember_token = SecureRandom.urlsafe_base64
@@ -45,5 +46,13 @@ class User < ActiveRecord::Base
       
       def unfollow!(other_user)
         relationships.find_by(followed_id: other_user.id).destroy
+      end
+
+      def total_votes
+        DocVote.joins(:doc).where(docs: {user_id: self.id}).sum('value')
+      end
+
+      def can_vote_for?(doc)
+        doc_votes.build(value: 1, doc: doc).valid?
       end
 end

@@ -393,3 +393,7 @@ div.image {
 #bk_btn{
     margin-top: 20px;
 }
+/*slider*/
+.banner { position: relative; overflow: auto; }
+    .banner li { list-style: none; }
+        .banner ul li { float: left; }

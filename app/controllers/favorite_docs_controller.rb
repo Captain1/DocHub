@@ -3,7 +3,7 @@ class FavoriteDocsController < ApplicationController
     # return an array [2,3,...]
     @favorite_docs_ids = Favorite.where(user_id:current_user.id).pluck(:favorited_id)
     @favorite_docs =Doc.all.where(id:@favorite_docs_ids).order("created_at DESC")
-    .paginate(page: params[:page], per_page: 12)
+    .paginate(page: params[:page], per_page: 4)
     respond_to do |format|
       format.html
       format.json { render json: @favorite_docs }
