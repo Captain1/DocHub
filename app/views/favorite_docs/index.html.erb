@@ -3,14 +3,9 @@
     <% @favorite_docs.each do |doc| %>
       <div class="col-sm-6 col-md-3">
         <div class="thumbnail shadowlight content block">
+        <%= doc.title %>
         <%= link_to (filepicker_image_tag doc.filepicker_url, w: 300, h: 300 ), doc %>
         <%= pluralize doc.doc_comments.size, 'comments' %>
-         <%= link_to root_path ,class: "btn btn-circle" do %>
-          <i class="glyphicon glyphicon-thumbs-up"></i>
-         <% end %>
-         <%= link_to root_path ,class: "btn btn-circle" do %>
-          <i class="glyphicon glyphicon-thumbs-down"></i>
-         <% end %>
          <% unless current_user.favorite_docs.exists?(id: doc.id) %>
          <%= link_to favorite_docs_path(doc_id: doc), method: :post, class: "btn btn-circle" do %>
           <i class="glyphicon glyphicon-heart-empty"></i>

@@ -1,12 +1,10 @@
-@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('../assets/glyphicons-halflings-regular.eot');
-    src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../assets/glyphicons-halflings-regular.woff') format('woff'), url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
 @import "font-awesome";
 @import "bootstrap";
-/* mixins, variables, etc. */
 
+/* mixins, variables, etc. */
+$gray-Light:#999;
+$gray-Lighter:#eee;
+$blue:#0000FF;
 $grayMediumLight: #eaeaea;
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -151,7 +149,7 @@ footer ul li {
 aside {
     section {
         padding: 10px 0;
-        border-top: 1px solid $grayLighter;
+        border-top: 1px solid $gray-Lighter;
         &:first-child {
             border: 0;
             padding-top: 0;
@@ -180,7 +178,7 @@ aside {
     a {
         float: left;
         padding: 0 10px;
-        border-left: 1px solid $grayLighter;
+        border-left: 1px solid $gray-Lighter;
         color: gray;
         &:first-child {
             padding-left: 0;
@@ -245,7 +243,7 @@ select,
 }
 
 .timestamp {
-    color: $grayLight;
+    color: $gray-Light;
 }
 
 .gravatar {
@@ -268,7 +266,7 @@ select,
 }
 
 .timestamp {
-    color: $grayLight;
+    color: $gray-Light;
 }
 
 .gravatar {
@@ -284,9 +282,9 @@ select,
     li {
         overflow: auto;
         padding: 10px 0;
-        border-top: 1px solid $grayLighter;
+        border-top: 1px solid $gray-Lighter;
         &:last-child {
-            border-bottom: 1px solid $grayLighter;
+            border-bottom: 1px solid $gray-Lighter;
         }
     }
 }
@@ -337,7 +335,7 @@ div.image {
 }
 //side
 .side {
-    padding-top: 108px;
+    padding-top: 135px;
     padding-bottom: 10px;
 }
 //round btn
