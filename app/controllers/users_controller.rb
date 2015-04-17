@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   end
 
   def index 
-     @users = User.paginate(:page => params[:page], :per_page => 5)
+    @users = User.paginate(:page => params[:page], :per_page => 5)
+    render json: @users
   end
 
   def show
