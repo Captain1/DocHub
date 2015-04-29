@@ -4,8 +4,8 @@
       <div class="col-sm-6 col-md-3">
         <div class="thumbnail shadowlight content block">
         <%= doc.title %>
-        <%= link_to (filepicker_image_tag doc.filepicker_url,w:280,h:280), doc %>
-        <%= pluralize doc.doc_comments.size, 'comments' %>
+        <%= link_to (filepicker_image_tag doc.filepicker_url,w:299,h:299), doc %>
+        <div><%= pluralize doc.doc_comments.size, 'comments' %></div>
          <% unless current_user.favorite_docs.exists?(id: doc.id) %>
          <%= link_to favorite_docs_path(doc_id: doc), method: :post, class: "btn btn-circle" do %>
           <i class="glyphicon glyphicon-heart-empty"></i>
